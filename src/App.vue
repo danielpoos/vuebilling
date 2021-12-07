@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>Jó reggelt</h1>
-    <Billing :rows="rows" @stable="table"/>
+    <h1>Vue app</h1>
+    <Billing :rows="rows" @bcha="Changed" @badd="Hozzaad" @bdel="Delete"/>
   </div>
 </template>
 
@@ -40,15 +40,21 @@ export default {
     }
   },
   methods:{
-    table(e){
-      this.rows.maps(function (row){
-      if (row.title != e.original.title){
-        return row
-      }
-        row.title = e.new.title
-        return row
+    changing(e){
+    this.rows.map(function (r) {
+        if (r.title != e.original.title) {
+          return r
+        }
+        r.title = e.new.title
+        return r
       })
-    }
+    },
+    adding(e){
+      this.rows.push(e.new)
+    },
+    deleting(e){
+      this.rows.push(e.new)
+    },
   }
 }
 </script>

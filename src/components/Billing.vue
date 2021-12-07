@@ -1,8 +1,9 @@
 <template>
   <div>
     <table>
-    <tr><th>Név</th><th>Ár</th><th>Darab</th></tr>
-    <BillingRows v-for="row in rows" v-bind:key="row" :row="row" @stable="table"/>
+    <tr><th>Name</th><th>Price</th><th>Quantity</th><th>Operations</th></tr>
+    <BillingRows v-for="row in rows" v-bind:key="row" :row="row"/>
+    <tr><td><input type="text" v-model="rows.title"></td><td><input type="number" v-model="rows.price"></td><td><input type="number" v-model="rows.quantity"></td><td><button @click="adding">Submit</button></td></tr>
     </table>
   </div>
 </template>
@@ -13,9 +14,24 @@ export default {
   props: ["rows"],
     components:{ BillingRows },
     methods:{
-      table(e){
-        this.$emit("stable", e);
+      changing(e){
+      this.$emit('bcha', e);
+    },
+      adding(){
+        this.$emit('badd', {
+          new:{
+            title:this.rows.title,
+            price:this.rows.price,
+            quantity:this.rows.quantity,
+          }
+        })
+        this.rows.title="",
+        this.rows.price=null,
+        this.rows.quantity=null
       }
+    },
+    deleting(e){
+        this.$emit('bdel', e)
     }
 }
 </script>
