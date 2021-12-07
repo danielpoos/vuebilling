@@ -53,7 +53,7 @@ export default {
       this.rows.push(e.new)
     },
     deleting(e){
-      this.rows.splice(this.rows.indexOf(e.new));
+      this.$delete(this.rows,this.rows.indexOf(e));
     },
   }
 }

@@ -25,9 +25,9 @@ export default {
             quantity:this.rows.quantity,
           }
         })
-        this.rows.title="",
-        this.rows.price=null,
-        this.rows.quantity=null
+        this.rows.push( {title:this.rows.title,
+            price:this.rows.price,
+            quantity:this.rows.quantity})
       }
     },
     deleting(e){
