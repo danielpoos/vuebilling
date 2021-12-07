@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Jó reggelt</h1>
+    <Billing :rows="rows" @stable="table"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Billing from './components/Billing.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Billing
   },
   data() {
     return {
@@ -37,6 +37,17 @@ export default {
           quantity: 321
         },
       ]
+    }
+  },
+  methods:{
+    table(e){
+      this.rows.maps(function (row){
+      if (row.title != e.original.title){
+        return row
+      }
+        row.title = e.new.title
+        return row
+      })
     }
   }
 }
