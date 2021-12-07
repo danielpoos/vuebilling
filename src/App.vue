@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Vue app</h1>
-    <Billing :rows="rows" @changing="Changed" @adding="Hozzaad" @deleting="Delete"/>
+    <Billing :rows="rows" @changing="Changed" @adding="Add" @deleting="Delete"/>
   </div>
 </template>
 
