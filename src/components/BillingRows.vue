@@ -4,10 +4,10 @@
       <td v-if="!unsaved">{{row.price}}</td>
       <td v-if="!unsaved">{{row.quantity}}</td>
       <td v-if="!unsaved"><button @click="editing">Edit</button><button @click="deleting">X</button></td>
-      <td v-if="unsaved"><input type="text"></td>
-      <td v-if="unsaved"><input type="number"></td>
-      <td v-if="unsaved"><input type="number"></td>
-      <td v-if="unsaved"><button @click="saving">Save</button></td>
+      <td v-if="unsaved"><input type="text" v-bind="row.title"></td>
+      <td v-if="unsaved"><input type="number" v-bind="row.price"></td>
+      <td v-if="unsaved"><input type="number" v-bind="row.quantity"></td>
+      <td v-if="unsaved"><button @click="changing">Save</button></td>
   </tr>
 </template>
 
@@ -26,9 +26,9 @@ export default {
         editing(){
             this.unsaved = true;
         },
-        saving(){
+        changing(){
             this.unsaved =false;
-            this.$emit('bcha', {
+            this.$emit('changing', {
                 original: this.row,
                 new: {
                     title: this.title,
@@ -38,7 +38,7 @@ export default {
             })
         },
         deleting(){
-            this.$emit('bdel',{ original: this.row,})
+            this.$emit('deleting',{ original: this.row,})
         }
     }
 }

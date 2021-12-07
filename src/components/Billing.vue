@@ -15,10 +15,10 @@ export default {
     components:{ BillingRows },
     methods:{
       changing(e){
-      this.$emit('bcha', e);
+      this.$emit('changing', e);
     },
       adding(){
-        this.$emit('badd', {
+        this.$emit('adding', {
           new:{
             title:this.rows.title,
             price:this.rows.price,
@@ -31,7 +31,7 @@ export default {
       }
     },
     deleting(e){
-        this.$emit('bdel', e)
+        this.$emit('deleting', e)
     }
 }
 </script>

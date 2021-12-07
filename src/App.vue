@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Vue app</h1>
-    <Billing :rows="rows" @bcha="Changed" @badd="Hozzaad" @bdel="Delete"/>
+    <Billing :rows="rows" @changing="Changed" @adding="Hozzaad" @deleting="Delete"/>
   </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
       this.rows.push(e.new)
     },
     deleting(e){
-      this.rows.push(e.new)
+      this.rows.splice(this.rows.indexOf(e.new));
     },
   }
 }
