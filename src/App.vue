@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Vue app</h1>
+    <Billing :rows="rows" @changing="Changed" @adding="Add" @deleting="Delete"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Billing from './components/Billing.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Billing
   },
   data() {
     return {
@@ -38,6 +38,23 @@ export default {
         },
       ]
     }
+  },
+  methods:{
+    changing(e){
+    this.rows.map(function (r) {
+        if (r.title != e.original.title) {
+          return r
+        }
+        r.title = e.new.title
+        return r
+      })
+    },
+    adding(e){
+      this.rows.push(e.new)
+    },
+    deleting(e){
+      this.$delete(this.rows,this.rows.indexOf(e));
+    },
   }
 }
 </script>
